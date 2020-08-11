@@ -1,3 +1,4 @@
+
 'use strict';
 
 const STORE = [
@@ -85,7 +86,23 @@ function handleItemCheckClicked() {
 function handleDeleteItemClicked() {
   // this function will be responsible for when users want to delete a shopping list
   // item
-  console.log('`handleDeleteItemClicked` ran')
+  $('.js-shopping-list').on('click', '.js-item-delete', function(event){
+    //console.log('you are clicking delete');
+    const id = getItemIdFromElement(event.currentTarget);
+    for(let i = 0; i < STORE.length; i++){
+      //Looping through each item
+      if(id === STORE[i].id){
+        //If we find that item that matches the id, delete it. 
+        console.log("We found the item!");
+        //console.log(STORE[i]);
+        console.log(i);
+        STORE.splice(i, 1);
+        console.log(STORE);
+      }
+    }
+    renderShoppingList();
+  });
+  console.log('`handleDeleteItemClicked` ran');
 }
 
 // this function will be our callback when the page loads. it's responsible for
